@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: wamis
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/wamis?autoReconnect=true&useSSL=false
+    username: root
+    password: password
+    tomcat:
+      test-on-borrow: true
+      validation-query: SELECT 1
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog.xml
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: create-drop
+server:
+  port: 5000
+connection:
+    code: MNY
+
