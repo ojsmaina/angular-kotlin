@@ -1,0 +1,102 @@
+.flex-form {
+
+  .form-group {
+    margin-bottom: 15px;
+    @include flexbox();
+    flex-wrap: wrap;
+    align-items: center;
+    input {
+      height: 35px;
+      @include placeholder {
+        font-family: 'Rubik', sans-serif;
+        color: lightgray;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
+
+    }
+    input[type="text"], input[type="number"], input[type="password"] {
+      width:340px;
+    }
+
+    label {
+      font-weight: $care-black;
+      width: 185px;
+    }
+
+    select{
+      font-family: 'Rubik', sans-serif;
+      height: 35px;
+      padding: 0 5px;
+      width: 340px;
+      color: $care-black;
+      border: 1px solid $care-gray-medium;
+      background: white;
+      border-radius: 0;
+    }
+  }
+
+  .form-group-radio__wrapper {
+    @include flexbox();
+    width: 340px;
+    .form-group-radio {
+      flex: 0 0 30%;
+      display: flex;
+      align-items: center;
+
+      input {
+        margin-right: 3px;
+      }
+    }
+  }
+
+  .form-group-select__wrapper {
+    @include flexbox();
+    width: 182px;
+    .form-group-radio {
+      flex: 0 0 30%;
+      display: flex;
+      align-items: center;
+
+      input {
+        margin-right: 3px;
+      }
+    }
+  }
+
+  .form-group-checkbox__wrapper {
+    @include flexbox();
+    label {
+      input {
+        margin-right: 3px;
+      }
+      @include flexbox();
+      align-items: center;
+    }
+  }
+
+  .form-group-birth-date__wrapper {
+    @include flexbox();
+    flex-wrap: wrap;
+    .birth-date {
+      padding: 0 5px;
+      flex-grow: 0;
+      margin-right: 6px;
+      &:last-child {
+       margin-right: 0;
+      }
+      &.birth-date--year{
+        width: 75px;
+      }
+
+      &.birth-date--day {
+        width: 45px;
+      }
+
+      &.birth-date--month {
+        width: 160px;
+      }
+    }
+  }
+}

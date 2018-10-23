@@ -1,0 +1,11 @@
+<div *ngIf="currentComponentIsList">
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="addCustomer()">
+      <mat-icon class="glyphicon-plus">add</mat-icon>
+      Add Customer
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+</div>
+<router-outlet></router-outlet>

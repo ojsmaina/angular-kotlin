@@ -1,0 +1,58 @@
+<div class="connection">
+
+  <mat-form-field>
+    <input matInput placeholder="Search connection" #input>
+  </mat-form-field>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource"
+             matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>
+
+    <ng-container matColumnDef="meterSerialNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Meter serial Number</mat-header-cell>
+      <mat-cell *matCellDef="let connection">{{connection.meterSerialNumber}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="meterLocation">
+      <mat-header-cell *matHeaderCellDef>Meter Location</mat-header-cell>
+      <mat-cell class="description-cell"
+                *matCellDef="let connection">{{connection.meterLocation}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="connectionCode">
+      <mat-header-cell *matHeaderCellDef>Connection code</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let connection">{{connection.connectionCode}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let connection">{{connection.status}}
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="customer">
+      <mat-header-cell *matHeaderCellDef>Owner</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let connection">{{connection.customer.firstName}}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  </mat-table>
+
+  <!--todo change [length]="10" to a dynamic value-->
+  <mat-paginator [length]="10" [pageSize]="10"
+                 [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+
+
+</div>

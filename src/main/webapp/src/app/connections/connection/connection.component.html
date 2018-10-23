@@ -1,0 +1,62 @@
+<section class="filter-wrapper">
+  <div class="keyword-wrapper">
+    <input type="text" [formControl]="customerQueryField" id="keyword" placeholder="search for customers..." autofocus />
+  </div>
+
+
+
+</section>
+
+<form [formGroup]="connectionsFormGroup" (ngSubmit)="submitConnectionHandler()">
+
+  <mat-form-field style="width: 30%">
+    <mat-select placeholder="Choose customer" formControlName="customer">
+      <mat-option *ngFor="let customer of customerResults" [value]="customer">
+        {{customer.firstName}} {{customer.middleName}} {{customer.surname}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<table>
+  <tr>
+    <td>
+      <label class="col-sm-2 control-label" for="meterSerialNumber">  <mat-label>Meter Serial number</mat-label></label>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <input matInput id="meterSerialNumber" placeholder="Meter serial number" formControlName="meterSerialNumber">
+        <mat-error *ngIf="meterSerialNumber.invalid && meterSerialNumber.touched">
+          The meter serial number is required
+        </mat-error>
+      </mat-form-field>
+    </td>
+    <td></td>
+
+  </tr>
+
+  <tr>
+    <td>
+      <label class="col-sm-2 control-label" for="meterLocation">  <mat-label>Meter location</mat-label></label>
+    </td>
+    <td colspan="2">
+      <mat-form-field  class="full-width-input" >
+        <textarea matInput placeholder="Meter location" formControlName="meterLocation" id="meterLocation"></textarea>
+        <mat-error *ngIf="meterLocation.invalid && meterLocation.touched">
+          The meter location is required
+        </mat-error>
+      </mat-form-field>
+
+    </td>
+  </tr>
+<tr>
+  <td colspan="2">
+    <div>
+      <button mat-raised-button color="accent" [disabled]="connectionsFormGroup.invalid" type="submit">Submit</button>
+    </div>
+  </td>
+</tr>
+
+</table>
+
+
+</form>

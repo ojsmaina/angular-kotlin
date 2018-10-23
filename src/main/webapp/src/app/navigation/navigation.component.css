@@ -1,0 +1,28 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+}
+
+.toolbar-space-filler {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+.sidenav-container{
+  background-color: #fafafa;
+}
+
+.content{
+  margin: 10px;
+}
+.submit-button-holder{
+  flex: 1 1 auto;
+}
