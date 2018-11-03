@@ -6,7 +6,6 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomMaterialModule } from './core/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BillsComponent } from './bills/bills.component';
 import { ConnectionsComponent } from './connections/connections.component';
 import { CustomersComponent } from './customers/customers.component';
 import { ReportsComponent } from './reports/reports.component';
@@ -22,12 +21,12 @@ import { UserComponent } from './users/user/user.component';
 import { CustomerStepperComponent } from './customers/customer-stepper/customer-stepper.component';
 import { ConnectionComponent } from './connections/connection/connection.component';
 import { ConnectionsListComponent } from './connections/connections-list/connections-list.component';
+import { BillsComponent } from './bills/bills.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    BillsComponent,
     ConnectionsComponent,
     CustomersComponent,
     ReportsComponent,
@@ -37,7 +36,8 @@ import { ConnectionsListComponent } from './connections/connections-list/connect
     UserComponent,
     CustomerStepperComponent,
     ConnectionComponent,
-    ConnectionsListComponent
+    ConnectionsListComponent,
+    BillsComponent
   ],
   imports: [
     BrowserModule,

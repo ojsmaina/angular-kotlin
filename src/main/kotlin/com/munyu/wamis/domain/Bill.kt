@@ -7,7 +7,7 @@ import javax.persistence.*
 @Entity
 data class Bill(
         @OneToOne
-        @JoinColumn(name = "insurance_package_id")
+        @JoinColumn(name = "connection_id")
         val reading: Reading,
 
         @Enumerated(EnumType.STRING)

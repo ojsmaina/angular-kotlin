@@ -1,8 +1,9 @@
 package com.munyu.wamis.service
 
+import com.munyu.wamis.domain.Connection
 import com.munyu.wamis.domain.Customer
-import com.munyu.wamis.rest.CustomerConnectionRequest
 
 interface CustomerService {
-    fun createCustomerConnection(customerConnectionRequest: CustomerConnectionRequest): Customer
+    fun createCustomerConnection(customer: Customer): Customer
+    fun addConnection(customerId: Long, connection: Connection) : Customer
 }

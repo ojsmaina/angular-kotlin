@@ -1,10 +1,9 @@
-package com.munyu.wamis.rest
+package com.munyu.wamis.resource
 
 import com.munyu.wamis.domain.Connection
 import com.munyu.wamis.repository.ConnectionRepository
 import com.munyu.wamis.repository.CustomerRepository
 import com.munyu.wamis.repository.specifications.ConnectionSpecification
-import com.munyu.wamis.repository.specifications.CustomerSpecification
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -23,8 +22,7 @@ class ConnectionController(private val connectionRepository: ConnectionRepositor
 
     @PostMapping("")
     fun createConnection(@Valid @RequestBody connection: Connection): Connection {
-        val customer = customerRepository.findById(connection.customer.id).get()
-        val conn = Connection(customer,connection.meterLocation,connection.meterSerialNumber,null,code)
+        val conn = Connection(connection.meterLocation,connection.meterSerialNumber,null,code)
         return connectionRepository.save(conn)
     }
 

@@ -112,44 +112,39 @@
       <table>
         <tr>
           <td>
-            <label class="col-sm-2 control-label" for="meterSerialNumber">  <mat-label>Meter Serial number</mat-label></label>
+            <label class="col-sm-2 control-label" for="number"> <mat-label>New Connection</mat-label></label>
           </td>
           <td>
-            <mat-form-field appearance="outline">
-              <input matInput id="meterSerialNumber" placeholder="Meter serial number" formControlName="meterSerialNumber">
-              <mat-error *ngIf="meterSerialNumber.invalid && meterSerialNumber.touched">
-                The meter serial number is required
-              </mat-error>
-            </mat-form-field>
+            <div formArrayName="connections">
+              <div *ngFor="let connection of formConnections.controls; let i=index;" [formGroupName]="i">
+                <mat-form-field>
+                  <input matInput id="meterSerialNumber" placeholder="Meter serial number" formControlName="meterSerialNumber">
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <textarea matInput placeholder="Meter location" formControlName="meterLocation" id="meterLocation"></textarea>
+                </mat-form-field>
+
+                <button mat-raised-button color="warn" (click)="deleteFormConnection(i)"> Delete Connection
+                  <mat-icon aria-label="add connection icon">delete</mat-icon>
+                </button>
+              </div>
+            </div>
+
+            <button type="button" mat-raised-button color="primary" (click)="addConnection()"> Add Connection
+              <mat-icon aria-label="add connection icon">add</mat-icon>
+            </button>
           </td>
-          <td></td>
 
         </tr>
-
         <tr>
-          <td>
-            <label class="col-sm-2 control-label" for="meterLocation">  <mat-label>Meter location</mat-label></label>
-          </td>
-          <td colspan="2">
-              <mat-form-field  class="full-width-input" >
-                <textarea matInput placeholder="Meter location" formControlName="meterLocation" id="meterLocation"></textarea>
-                <mat-error *ngIf="meterLocation.invalid && meterLocation.touched">
-                  The meter location is required
-                </mat-error>
-              </mat-form-field>
-
-          </td>
-
-
-        </tr>
-
-        <tr>
-          <td></td>
-          <td></td>
-
-          <td>
+        <td>
+            <div>
               <button type="button" mat-button matStepperPrevious>Back</button>
               <button type="button" mat-button matStepperNext >Next</button>
+            </div>
+
           </td>
         </tr>
       </table>

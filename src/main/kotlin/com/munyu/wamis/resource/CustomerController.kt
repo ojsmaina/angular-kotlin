@@ -1,5 +1,6 @@
-package com.munyu.wamis.rest
+package com.munyu.wamis.resource
 
+import com.munyu.wamis.domain.Connection
 import com.munyu.wamis.domain.Customer
 import com.munyu.wamis.domain.PhoneNumber
 import com.munyu.wamis.repository.CustomerRepository
@@ -14,9 +15,15 @@ import javax.validation.Valid
 @RequestMapping("/customers")
 class CustomerController(private val customerRepository: CustomerRepository,private val customerService: CustomerService) {
 
+
     @PostMapping("")
-    fun createCustomer(@Valid @RequestBody customerConnectionRequest: CustomerConnectionRequest): Customer {
-       return customerService.createCustomerConnection(customerConnectionRequest);
+    fun createCustomer(@Valid @RequestBody customer: Customer): Customer {
+       return customerService.createCustomerConnection(customer);
+    }
+
+    @PostMapping("{customerId}")
+    fun connect(@PathVariable("id") customerId: Long, @RequestBody connection: Connection): Customer {
+       return customerService.addConnection(customerId,connection);
     }
 
     @GetMapping("")
@@ -44,7 +51,7 @@ class CustomerController(private val customerRepository: CustomerRepository,priv
     }
 }
 
-class CustomerConnectionRequest(val firstName: String, val middleName: String, val surname: String, val idNumber: String, val email: String, val phoneNumbers: List<PhoneNumber>, val meterLocation: String,val meterSerialNumber: String) {
+class CustomerConnectionRequest(val firstName: String, val middleName: String, val surname: String, val idNumber: String, val email: String, val phoneNumbers: MutableList<PhoneNumber>, val connections: MutableList<Connection>) {
 }
 
 

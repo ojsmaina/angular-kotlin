@@ -1,17 +1,13 @@
 package com.munyu.wamis.domain
 
 import org.springframework.beans.factory.annotation.Value
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.ManyToOne
-import javax.persistence.Enumerated
-import javax.persistence.EnumType
+import javax.persistence.*
 
 @Entity
 data class Connection(
-        @ManyToOne(fetch = FetchType.LAZY)
-        val customer: Customer,
+      /*  @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "customer_id", updatable = false, nullable = false)
+        val customer: Customer,*/
 
         @Column(nullable = false,columnDefinition = "TEXT")
         val meterLocation: String,
@@ -20,7 +16,7 @@ data class Connection(
         val meterSerialNumber: String,
 
         @Enumerated(EnumType.STRING)
-        @Column(nullable = false)
+        @Column(nullable = true)
         var status: ConnectionStatus? = null
 
 ) : AbstractAuditableEntity(){
@@ -29,7 +25,7 @@ data class Connection(
     var connectionCode: String = "";
 
 
-    constructor(cus: Customer, meterLoc: String,serialNumber: String,status: ConnectionStatus?, connectionCode: String ) : this(cus,meterLoc,serialNumber,status){
+    constructor(meterLoc: String,serialNumber: String,status: ConnectionStatus?, connectionCode: String ) : this(meterLoc,serialNumber,status){
         this.connectionCode = connectionCode.plus(this.generateConnectionCode())
         this.status = ConnectionStatus.ACTIVE;
     }

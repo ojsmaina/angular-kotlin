@@ -17,6 +17,6 @@ data class Reading(
         @Column(nullable = false)
         val currentReading: String,
 
-        @JoinColumn(name = "insurance_package_id")
+        @JoinColumn(name = "connection_id")
        val connection: Connection
 ) : AbstractAuditableEntity()

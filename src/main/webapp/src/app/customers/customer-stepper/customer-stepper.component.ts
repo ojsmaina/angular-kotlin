@@ -23,21 +23,20 @@ export class CustomerStepperComponent implements OnInit {
     })
   };
 
-  constructor(private _formBuilder: FormBuilder,private http: HttpClient) {}
+  constructor(private fb: FormBuilder,private http: HttpClient) {}
 
   ngOnInit() {
-    this.customerFormGroup = this._formBuilder.group({
+    this.customerFormGroup = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       middleName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       surname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       idNumber: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       email: ['', [Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      phoneNumbers: this._formBuilder.array([]),
-      meterSerialNumber: ['', Validators.required],
-      meterLocation: ['', Validators.required]
+      phoneNumbers: this.fb.array([]),
+      connections: this.fb.array([])
     });
 
-    this.connectionsFormGroup = this._formBuilder.group({
+    this.connectionsFormGroup = this.fb.group({
 
     });
 
@@ -69,7 +68,7 @@ export class CustomerStepperComponent implements OnInit {
   }
 
   addPhoneNumber() {
-    const phoneNumber = this._formBuilder.group({
+    const phoneNumber = this.fb.group({
       number: ['',
         [Validators.required,
           Validators.pattern('^254+[0-9]*'),
@@ -86,19 +85,33 @@ export class CustomerStepperComponent implements OnInit {
   }
 
 //Connection form controls
+  get formConnections(){
+    return this.customerFormGroup.get("connections") as FormArray
+  }
+
+  addConnection() {
+    const connection = this.fb.group({
+      meterSerialNumber: ['', Validators.required],
+      meterLocation: ['', Validators.required]
+    });
+
+    this.formConnections.push(connection);
+  }
+
+  deleteFormConnection(i){
+    this.formConnections.removeAt(i);
+  }
+/*
   get meterSerialNumber(){
     return this.customerFormGroup.get("meterSerialNumber");
   }
-
   get meterLocation(){
     return this.customerFormGroup.get("meterLocation");
-  }
+  }*/
 
   async submitCustomerConnectionHandler() {
     this.loading = true;
-
     const customerData = this.customerFormGroup.value;
-
     console.log("Customer data" + customerData);
 
     try {
