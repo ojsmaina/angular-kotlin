@@ -25,14 +25,15 @@ data class Customer(
         @OneToMany(cascade = [CascadeType.ALL])
         val phoneNumbers: MutableList<PhoneNumber>? = null,
 
-        @OneToMany(cascade= [CascadeType.ALL])
-        @JoinColumn(name = "customer_id")
+        @JsonIgnoreProperties("customer")
+        @OneToMany(mappedBy = "customer",cascade= [CascadeType.ALL])
         val connections: MutableList<Connection> = ArrayList()
 
 ) : AbstractAuditableEntity() {
 
-    fun addConnection(connection: Connection) {
-        connections.add(connection);
+    fun addConnection(connections: List<Connection>){
+        this.connections.addAll(connections);
+        connections.forEach { c -> c.customer = this }
     }
 }
 

@@ -11,7 +11,7 @@
 
   <mat-form-field style="width: 30%">
     <mat-select placeholder="Choose customer" formControlName="customer">
-      <mat-option *ngFor="let customer of customerResults" [value]="customer">
+      <mat-option *ngFor="let customer of customerResults" [value]="customer.id">
         {{customer.firstName}} {{customer.middleName}} {{customer.surname}}
       </mat-option>
     </mat-select>

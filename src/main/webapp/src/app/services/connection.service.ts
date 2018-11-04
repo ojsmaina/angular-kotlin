@@ -17,15 +17,6 @@ export class ConnectionService {
 
   constructor(private http: HttpClient) { }
 
-  createConnection(connection: Connection){
-    this.http.post(this.connectionUrl, JSON.stringify(connection),this.headers)
-      .subscribe(response => {
-        console.log(response);
-      },(err: HttpErrorResponse) => {
-        console.log(err);
-      });
-  }
-
   getConnections(
     filter = '', sortOrder = 'asc',
     pageNumber = 0, pageSize = 3):  Observable<Connection[]> {

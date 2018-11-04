@@ -15,6 +15,7 @@ export class ConnectionComponent implements OnInit {
   connectionsFormGroup: FormGroup;
   customerQueryField: FormControl = new FormControl();
   customerResults: any[] = [];
+  custId : number;
 
   //form state
   loading = false;
@@ -58,10 +59,9 @@ export class ConnectionComponent implements OnInit {
   async submitConnectionHandler() {
     this.loading = true;
     const connectionData = this.connectionsFormGroup.value;
-
     try {
       //submit form
-      this.connectionService.createConnection(connectionData);
+      this.customerService.connect(connectionData);
       this.success = true;
     }catch (e) {
       console.log(e)

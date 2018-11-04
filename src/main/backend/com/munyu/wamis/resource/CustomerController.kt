@@ -1,10 +1,10 @@
 package com.munyu.wamis.resource
 
 import com.munyu.wamis.domain.Connection
-import com.munyu.wamis.repository.ConnectionRepository
+import com.munyu.wamis.domain.Customer
 import com.munyu.wamis.repository.CustomerRepository
-import com.munyu.wamis.repository.specifications.ConnectionSpecification
-import org.springframework.beans.factory.annotation.Value
+import com.munyu.wamis.repository.specifications.CustomerSpecification
+import com.munyu.wamis.service.CustomerService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -12,28 +12,34 @@ import org.springframework.data.domain.Sort
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
+
 @RestController
-@RequestMapping("/connections")
-class ConnectionController(private val connectionRepository: ConnectionRepository, private val customerRepository: CustomerRepository) {
-
-    @Value("\${connection.code:}")
-    private val code: String = ""
-
+@RequestMapping("/customers")
+class CustomerController(private val customerRepository: CustomerRepository,private val customerService: CustomerService) {
 
     @PostMapping("")
-    fun createConnection(@Valid @RequestBody connection: Connection): Connection {
-        val conn = Connection(connection.meterLocation,connection.meterSerialNumber,null,code)
-        return connectionRepository.save(conn)
+    fun createCustomer(@Valid @RequestBody customer: Customer): Customer {
+       return customerService.createCustomerConnection(customer);
+    }
+
+    @GetMapping("{customerId}")
+    fun getCustomer(@PathVariable("customerId") customerId: Long) : Customer{
+        return customerRepository.findById(customerId).get()
+    }
+
+    @PostMapping("{customerId}/connect")
+    fun connect(@PathVariable("customerId") customerId: Long, @RequestBody connection: Connection): Customer {
+       return customerService.addConnection(customerId,connection);
     }
 
     @GetMapping("")
-    fun getConnections(
+    fun getCustomers(
             @RequestParam("filter") filter: String,
             @RequestParam("sortOrder", defaultValue = "ASC") sortOrder: String,
             @RequestParam("pageNumber", defaultValue = "0") pageNumber: Int,
             @RequestParam("pageSize", defaultValue = "10") pageSize: Int,
             pageable: Pageable
-    ): Page<Connection> {
+    ): Page<Customer> {
         val direction: Sort.Direction = if(sortOrder == "asc".toUpperCase()){
             Sort.Direction.ASC
         }else{
@@ -47,7 +53,10 @@ class ConnectionController(private val connectionRepository: ConnectionRepositor
         };
 
         val pageRequest= PageRequest.of(pageNum , pageSize, direction, "id")
-        return connectionRepository.findAll(ConnectionSpecification.findConnectionsBySpecification(filter), pageRequest)
-
+        return customerRepository.findAll(CustomerSpecification.findCustomersBySpecification(filter), pageRequest)
     }
 }
+
+
+
+
