@@ -1,21 +1,119 @@
-mat-grid-tile {
-  background: lightblue;
+.search-control > input,
+.search-control > button {
+  font-size: 1.2rem;
 }
 
-.bill-connection-wrapper{
-  padding: 15px;
-}
-
-.bill-wrapper{
-  padding: 15px;
-}
-
-.connection-search-form {
-  min-width: 150px;
-  max-width: 500px;
+.search-control > input{
   width: 100%;
 }
 
-.connection-search-width {
+.filter-wrapper,
+.keyword-wrapper {
+  display: flex;
+  margin: 20px 20px 5px 0px;
+}
+.filter-wrapper {
+  min-height: 2%;
+  flex-flow: column wrap;;
+  position: relative
+}
+.keyword-wrapper {
   width: 100%;
+  position: relative;
+}
+#keyword {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font: 1.5em 'Arimo', sans-serif;
+  width: 100%;
+  outline: none;
+  transition: border 0.5s ease-in-out;
+  border-color : rgba(81, 203, 238, 1);
+}
+#keyword:focus {
+  /*border-color : rgba(81, 203, 238, 1);;*/
+}
+#keyword-button {
+  position: absolute;
+  right: 26%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.7em;
+  color: #8DB9ED
+}
+#keyword-button:hover {
+  color: #ccc
+}
+.filter-select {
+  width: 20%;
+  list-style: square;
+  font-size: 1.1em;
+  color: rgb(105, 105, 105);
+  border: 1px solid #ccc;
+  border-top: none;
+  top: calc(50% + 25px);
+  overflow-y: auto;
+  background: #fff;
+  margin: 2px 20px 20px 0px;
+}
+.tags {
+  font-size: 12px;
+  font-style: italic;
+  color: #c6c6c6;
+  margin-right: 10px;
+  position: relative;
+  top: -10px;
+}
+.filter-select-list:hover .tags {
+  color: #fff;
+}
+.filter-select-list {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.customer-name {
+  display: inline-block;
+  position: absolute;
+}
+.filter-select-list:hover {
+  background:  #C0C0C0;
+  color: #fff
+}
+.list-highlight,
+.list-highlight:hover {
+  background: rgb(55, 55, 55);
+  color: #fff
+}
+
+.selected {
+  background-color: #CFD8DC !important;
+  color: white;
+}
+
+.connections li {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color:#CFD8DC !important;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+
+
+.connections .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #607D8B;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
 }

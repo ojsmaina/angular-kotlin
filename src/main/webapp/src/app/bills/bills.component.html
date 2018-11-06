@@ -1,19 +1,18 @@
 <div class="row">
-  <div class="col-sm-4 bill-connection-wrapper">
-    <form class="connection-search-form">
-      <mat-form-field class="connection-search-full-width">
-        <input type="text" placeholder="Enter Meter Serial Number" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+  <div class="col-sm-4">
+    <section class="filter-wrapper">
+      <div class="keyword-wrapper">
+          <input type="text" [formControl]="customerQueryField" id="keyword" placeholder="search for a customer..." autofocus />
+      </div>
+    </section>
 
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getConnection($event.option.value)'>
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
+    <mat-list>
+      <mat-list-item *ngFor="let connection of customerConnections" [class.selected]="connection === selectedConnection"
+                     (click)="onSelect(connection)">
+        <span class="badge">{{connection.id}}</span>{{connection.meterSerialNumber}} in  {{connection.meterLocation}}
+      </mat-list-item>
 
-      </mat-form-field>
-    </form>
-
-  </div>
-  <div class="col-sm-8 bill-wrapper">.col-sm-8</div>
+    </mat-list>
 </div>
-
+  <div class="col-sm-8">Detailed connection</div>
+</div>

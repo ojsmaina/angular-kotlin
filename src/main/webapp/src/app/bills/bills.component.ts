@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
-import {debounceTime, distinctUntilChanged, map, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
 import {Connection} from '../model/connection.model';
+import {Customer} from '../model/customer';
 import {ConnectionService} from '../services/connection.service';
+import {CustomerService} from '../services/customer.service';
 
 @Component({
   selector: 'app-bills',
@@ -11,39 +13,24 @@ import {ConnectionService} from '../services/connection.service';
   styleUrls: ['./bills.component.css']
 })
 export class BillsComponent implements OnInit {
-  myControl = new FormControl();
-  options: string[] = [];
-  connectionResults: Connection[] = [];
-  filteredOptions: Observable<string[]>;
+  customerQueryField: FormControl = new FormControl();
+  customerConnections: any[] = [];
+  selectedConnection: Connection;
 
-  constructor(private connectionService: ConnectionService) { }
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged(),
-        startWith(''),
-        map(value => this._filterCOnnections(value))
-      );
+    this.customerQueryField.valueChanges.pipe(
+      debounceTime(3000),
+      distinctUntilChanged(),
+      switchMap((query) => this.customerService.searchCustomer(query))).subscribe(res => {
+      res['content'].forEach(item => {
+        this.customerConnections = item.connections;
+  });
+});
   }
 
-  private _filterCOnnections(value: string): string[] {
-    const filterValue = value.toLowerCase();
-      this.connectionService.getConnections().subscribe(res => {
-        res['content'].forEach(conn => {
-          this.options.push(conn['meterSerialNumber'])
-        });
-      });
-
-      console.log("The options are as follows"+ this.options);
-      return this.options;
-   // return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  getConnection(connId: number) {
-      console.log("connection id"+ connId);
-      let  connection = this.connectionResults.filter(c => c.id == connId);
-    console.log("connection "+ connection);
+  onSelect(connection: Connection): void {
+    this.selectedConnection = connection;
   }
 }

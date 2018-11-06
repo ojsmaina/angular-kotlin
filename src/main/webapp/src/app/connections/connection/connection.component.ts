@@ -15,20 +15,19 @@ export class ConnectionComponent implements OnInit {
   connectionsFormGroup: FormGroup;
   customerQueryField: FormControl = new FormControl();
   customerResults: any[] = [];
-  custId : number;
 
   //form state
   loading = false;
   success = false;
 
-  constructor(private _formBuilder: FormBuilder, private connectionService: ConnectionService,private customerService: CustomerService, private _http: HttpClient) {
+  constructor(private _formBuilder: FormBuilder, private connectionService: ConnectionService,private customerService: CustomerService) {
   }
 
   ngOnInit() {
     this.connectionsFormGroup = this._formBuilder.group({
       meterSerialNumber: ['', Validators.required],
       meterLocation: ['', Validators.required],
-      customer: ['', Validators.required]
+      customerId: ['', Validators.required]
     });
 
     this.customerQueryField.valueChanges.pipe(
@@ -53,15 +52,12 @@ export class ConnectionComponent implements OnInit {
     return this.connectionsFormGroup.get("customerId");
   }
 
-  searchCustomer(){
-
-  }
   async submitConnectionHandler() {
     this.loading = true;
     const connectionData = this.connectionsFormGroup.value;
     try {
       //submit form
-      this.customerService.connect(connectionData);
+      this.customerService.connect(this.customerId.value,connectionData);
       this.success = true;
     }catch (e) {
       console.log(e)

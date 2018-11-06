@@ -1,16 +1,13 @@
 <section class="filter-wrapper">
   <div class="keyword-wrapper">
-    <input type="text" [formControl]="customerQueryField" id="keyword" placeholder="search for customers..." autofocus />
+    <input type="text" [formControl]="customerQueryField" id="keyword" placeholder="search for a customer..." autofocus />
   </div>
-
-
-
 </section>
 
 <form [formGroup]="connectionsFormGroup" (ngSubmit)="submitConnectionHandler()">
 
   <mat-form-field style="width: 30%">
-    <mat-select placeholder="Choose customer" formControlName="customer">
+    <mat-select placeholder="Choose customer" formControlName="customerId">
       <mat-option *ngFor="let customer of customerResults" [value]="customer.id">
         {{customer.firstName}} {{customer.middleName}} {{customer.surname}}
       </mat-option>

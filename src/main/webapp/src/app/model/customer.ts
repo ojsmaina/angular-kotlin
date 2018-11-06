@@ -1,3 +1,4 @@
+import {Connection} from './connection.model';
 import {PhoneNumber} from './phone.number';
 
 export interface Customer {
@@ -7,10 +8,9 @@ export interface Customer {
   surname: string;
   idNumber: string;
   email: string;
-  phoneNumbers: PhoneNumber[]
+  phoneNumbers: PhoneNumber[];
+  connections: Connection[];
 }
-
-
 
 export interface CustomerApi {
   items: Customer[];

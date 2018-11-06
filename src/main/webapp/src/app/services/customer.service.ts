@@ -40,9 +40,8 @@ export class CustomerService {
     return this.http.get<Customer[]>(_URL);
   }
 
-  connect(connection: Connection){
-    const custId = connection.customer.id;
-    this.http.post(this.customerUrl+"/"+custId+"/connect", JSON.stringify(connection),this.headers)
+  connect(customerId: number, connection: Connection){
+    this.http.post(this.customerUrl+"/"+customerId+"/connect", JSON.stringify(connection),this.headers)
       .subscribe(response => {
         console.log(response);
       },(err: HttpErrorResponse) => {
