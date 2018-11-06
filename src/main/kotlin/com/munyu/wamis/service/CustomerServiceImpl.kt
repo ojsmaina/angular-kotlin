@@ -18,5 +18,10 @@ class CustomerServiceImpl(private val customerRepository: CustomerRepository, pr
        customer.connections.forEach { connection -> connection.customer = customer }
        return customerRepository.save(customer);
     }
+
+    override fun getCustomerConnections(customerId: Long): List<Connection> {
+        val customer : Customer = customerRepository.findById(customerId).get()
+        return connectionRepository.findByCustomer(customer);
+    }
 }
 

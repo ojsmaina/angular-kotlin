@@ -32,6 +32,11 @@ class CustomerController(private val customerRepository: CustomerRepository,priv
        return customerService.addConnection(customerId,connection);
     }
 
+    @GetMapping("{customerId}/connections")
+    fun getCustomerConnections(@PathVariable("customerId") customerId: Long) : List<Connection>{
+        return customerService.getCustomerConnections(customerId)
+    }
+
     @GetMapping("")
     fun getCustomers(
             @RequestParam("filter") filter: String,

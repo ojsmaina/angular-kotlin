@@ -17,6 +17,7 @@ data class Reading(
         @Column(nullable = false)
         val currentReading: String,
 
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "connection_id")
        val connection: Connection
 ) : AbstractAuditableEntity()
