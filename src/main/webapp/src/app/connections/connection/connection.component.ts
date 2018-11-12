@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 import { debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {Connection} from '../../model/connection';
 import { ConnectionService } from '../../services/connection.service';
 import { CustomerService } from '../../services/customer.service';
 
@@ -55,9 +56,11 @@ export class ConnectionComponent implements OnInit {
   async submitConnectionHandler() {
     this.loading = true;
     const connectionData = this.connectionsFormGroup.value;
+    const connections : Connection[] = [];
+    connections.push(connectionData);
     try {
       //submit form
-      this.customerService.connect(this.customerId.value,connectionData);
+      this.customerService.connect(this.customerId.value,connections);
       this.success = true;
     }catch (e) {
       console.log(e)

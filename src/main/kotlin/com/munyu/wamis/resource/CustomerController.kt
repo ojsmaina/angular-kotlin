@@ -28,7 +28,7 @@ class CustomerController(private val customerRepository: CustomerRepository,priv
     }
 
     @PostMapping("{customerId}/connect")
-    fun connect(@PathVariable("customerId") customerId: Long, @RequestBody connection: Connection): Customer {
+    fun connect(@PathVariable("customerId") customerId: Long, @RequestBody connection: List<Connection>): Customer {
        return customerService.addConnection(customerId,connection);
     }
 

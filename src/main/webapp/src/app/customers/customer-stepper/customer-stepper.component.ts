@@ -101,13 +101,6 @@ export class CustomerStepperComponent implements OnInit {
   deleteFormConnection(i){
     this.formConnections.removeAt(i);
   }
-/*
-  get meterSerialNumber(){
-    return this.customerFormGroup.get("meterSerialNumber");
-  }
-  get meterLocation(){
-    return this.customerFormGroup.get("meterLocation");
-  }*/
 
   async submitCustomerConnectionHandler() {
     this.loading = true;

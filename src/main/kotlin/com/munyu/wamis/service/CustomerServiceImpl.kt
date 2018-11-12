@@ -2,15 +2,16 @@ package com.munyu.wamis.service
 
 import com.munyu.wamis.domain.Connection
 import com.munyu.wamis.domain.Customer
+import com.munyu.wamis.domain.Reading
 import com.munyu.wamis.repository.ConnectionRepository
 import com.munyu.wamis.repository.CustomerRepository
 import org.springframework.stereotype.Service
 
 @Service
 class CustomerServiceImpl(private val customerRepository: CustomerRepository, private val connectionRepository: ConnectionRepository): CustomerService {
-    override fun addConnection(customerId: Long, connection: Connection): Customer {
+    override fun addConnection(customerId: Long, connection: List<Connection>): Customer {
        val customer : Customer = customerRepository.findById(customerId).get()
-       customer.addConnection(listOf(connection))
+       customer.addConnection(connection)
        return customerRepository.save(customer)
     }
 

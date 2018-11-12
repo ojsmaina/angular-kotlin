@@ -7,12 +7,61 @@
     </section>
 
     <mat-list>
-      <mat-list-item *ngFor="let connection of customerConnections" [class.selected]="connection === selectedConnection"
+      <mat-list-item class="customer-connections-list" *ngFor="let connection of customerConnections" [class.selected]="connection === connection"
                      (click)="onSelect(connection)">
         <span class="badge">{{connection.id}}</span>{{connection.meterSerialNumber}} in  {{connection.meterLocation}}
       </mat-list-item>
 
     </mat-list>
 </div>
-  <div class="col-sm-8">Detailed connection</div>
+  <div class="col-sm-8" *ngIf="connectionSelected">
+    <div class="row">
+    <mat-toolbar role="toolbar" color="primary">
+      <mat-toolbar-row>
+        Billing Information for {{connection.meterLocation}}
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <form [formGroup]="billingFormGroup" class="billing-form" (ngSubmit)="submitReadings()">
+      <table class="billing-form-table">
+        <tr>
+        <td>
+          <label class="col-sm-2 control-label" for="previousReading">  <mat-label>Previous reading</mat-label></label>
+        </td>
+        <td>
+          <mat-form-field appearance="outline">
+            <input matInput id="previousReading" placeholder="Meter serial number" formControlName="previousReading">
+            <mat-error *ngIf="previousReading.invalid && previousReading.touched">
+              The previous reading is required
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td></td>
+      </tr>
+        <tr>
+          <td>
+            <label class="col-sm-2 control-label" for="currentReading">  <mat-label>Current reading</mat-label></label>
+          </td>
+          <td>
+            <mat-form-field appearance="outline">
+              <input matInput id="currentReading" placeholder="Meter serial number" formControlName="currentReading">
+              <mat-error *ngIf="currentReading.invalid && currentReading.touched">
+                The current reading is required
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <button type="button" class="submit-btn" mat-raised-button color="accent" [disabled]="billingFormGroup.invalid" type="submit">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+    <div class="row">
+      <mat-toolbar role="toolbar" color="primary">
+        <mat-toolbar-row>
+          Previous Bills
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+</div>
 </div>

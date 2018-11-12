@@ -10,7 +10,7 @@
 .filter-wrapper,
 .keyword-wrapper {
   display: flex;
-  margin: 20px 20px 5px 0px;
+  margin: 7px 20px 5px 0px;
 }
 .filter-wrapper {
   min-height: 2%;
@@ -101,8 +101,6 @@
   border-radius: 4px;
 }
 
-
-
 .connections .badge {
   display: inline-block;
   font-size: small;
@@ -116,4 +114,16 @@
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+}
+
+.billing-form{
+ padding: 20px;
+}
+
+.submit-btn{
+  margin: 20px;
+}
+.customer-connections-list{
+  margin: 5px;
+  padding: 5px;
 }

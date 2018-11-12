@@ -1,4 +1,5 @@
 import {Customer} from './customer';
+import {Reading} from './Reading';
 
 export class Connection {
   id: number;
@@ -7,4 +8,5 @@ export class Connection {
   connectionCode: string;
   status: string;
   customer: Customer;
+  readings: Reading[];
 }

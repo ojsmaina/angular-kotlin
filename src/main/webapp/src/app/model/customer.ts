@@ -1,8 +1,8 @@
-import {Connection} from './connection.model';
+import {Connection} from './connection';
 import {PhoneNumber} from './phone.number';
 
-export interface Customer {
-  id: number
+export class Customer {
+  id: number;
   firstName: string;
   middleName: string;
   surname: string;

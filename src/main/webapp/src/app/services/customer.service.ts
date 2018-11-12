@@ -2,7 +2,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/c
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/internal/Observable';
 import {map, tap} from 'rxjs/operators';
-import {Connection} from '../model/connection.model';
+import {Connection} from '../model/connection';
 import {Customer} from '../model/customer';
 
 @Injectable({
@@ -40,12 +40,17 @@ export class CustomerService {
     return this.http.get<Customer[]>(_URL);
   }
 
-  connect(customerId: number, connection: Connection){
-    this.http.post(this.customerUrl+"/"+customerId+"/connect", JSON.stringify(connection),this.headers)
+  connect(customerId: number, connections: Connection[]){
+    this.http.post(this.customerUrl+"/"+customerId+"/connect", JSON.stringify(connections),this.headers)
       .subscribe(response => {
         console.log(response);
       },(err: HttpErrorResponse) => {
         console.log(err);
       });
+  }
+
+  getCustomerConnections(customerId: number) {
+    let _URL = this.customerUrl +"/"+ customerId+"/connections";
+    return this.http.get<Customer[]>(_URL);
   }
 }

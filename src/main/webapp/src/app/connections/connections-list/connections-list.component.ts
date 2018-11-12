@@ -8,7 +8,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {fromEvent} from 'rxjs/internal/observable/fromEvent';
 import {merge} from 'rxjs/internal/observable/merge';
 import {catchError, debounceTime, distinctUntilChanged, finalize, tap} from 'rxjs/operators';
-import {Connection} from '../../model/connection.model';
+import {Connection} from '../../model/connection';
 import {ConnectionService} from '../../services/connection.service';
 
 @Component({

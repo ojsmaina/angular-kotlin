@@ -155,7 +155,7 @@
     <ng-template matStepLabel>Done</ng-template>
     <div>
       <button type="button" mat-button matStepperPrevious>Back</button>
-      <button type="button" mat-raised-button color="accent" [disabled]="customerFormGroup.invalid" type="submit">Submit</button>
+      <button type="button" class="submit-btn" mat-raised-button color="accent" [disabled]="customerFormGroup.invalid" type="submit">Submit</button>
       <!--<button mat-button (click)="stepper.reset()">Reset</button>-->
     </div>
   </mat-step>

@@ -1,7 +1,7 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/internal/Observable';
-import { Connection } from '../model/connection.model';
+import {Connection} from '../model/connection';
 
 @Injectable({
   providedIn: 'root'

@@ -15,8 +15,11 @@ object ConnectionSpecification {
                 val p1 = cb.like(cb.lower(root.get("meterSerialNumber")), "%$searchTerm%")
                 val p2 = cb.like(cb.lower(root.get("meterLocation")), "%$searchTerm%")
                 val p3 = root.join<Any, Any>("customer").get<Any>("firstName").`in`(searchTerm)
+                val p4 = root.join<Any, Any>("customer").get<Any>("middleName").`in`(searchTerm)
+                val p5 = root.join<Any, Any>("customer").get<Any>("surname").`in`(searchTerm)
+                val p6 = root.join<Any, Any>("customer").get<Any>("idNumber").`in`(searchTerm)
 
-                val namePredicate = cb.or(p1, p2,p3)
+                val namePredicate = cb.or(p1, p2,p3,p4,p5,p6)
                 predicates.add(namePredicate)
             }
             cb.and(*predicates.toTypedArray())

@@ -1,7 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
-    <changeSet author="gmaina (generated)" id="1541517332583-1">
+    <changeSet author="gmaina" id="1541921637131-1">
         <createTable tableName="bill">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -16,7 +15,7 @@
             <column name="connection_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="gmaina (generated)" id="1541517332583-2">
+    <changeSet author="gmaina" id="1541921637131-2">
         <createTable tableName="connection">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -38,7 +37,7 @@
             <column name="customer_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="gmaina (generated)" id="1541517332583-3">
+    <changeSet author="gmaina" id="1541921637131-3">
         <createTable tableName="customer">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -60,7 +59,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="gmaina (generated)" id="1541517332583-4">
+    <changeSet author="gmaina" id="1541921637131-4">
         <createTable tableName="customer_phone_numbers">
             <column name="customer_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -70,7 +69,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="gmaina (generated)" id="1541517332583-5">
+    <changeSet author="gmaina" id="1541921637131-5">
         <createTable tableName="phone_number">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -84,7 +83,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="gmaina (generated)" id="1541517332583-6">
+    <changeSet author="gmaina" id="1541921637131-6">
         <createTable tableName="reading">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true"/>
@@ -93,31 +92,36 @@
             <column name="date_created" type="datetime"/>
             <column name="date_modified" type="datetime"/>
             <column name="modified_by" type="datetime"/>
-            <column name="connection" type="TINYBLOB"/>
-            <column name="current_reading" type="VARCHAR(255)">
+            <column name="current_reading" type="INT">
                 <constraints nullable="false"/>
             </column>
             <column name="date_of_reading" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="previous_reading" type="VARCHAR(255)">
+            <column name="previous_reading" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="connection_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="gmaina (generated)" id="1541517332583-7">
+    <changeSet author="gmaina" id="1541921637131-7">
         <createIndex indexName="FK8t59yk70tp1u41ltrlfkmk4ut" tableName="customer_phone_numbers">
             <column name="customer_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="gmaina (generated)" id="1541517332583-8">
+    <changeSet author="gmaina" id="1541921637131-8">
         <createIndex indexName="FKb63d00g4g5tubtoidrnjb95nm" tableName="bill">
             <column name="connection_id"/>
         </createIndex>
     </changeSet>
-    <changeSet author="gmaina (generated)" id="1541517332583-9">
+    <changeSet author="gmaina" id="1541921637131-9">
         <createIndex indexName="FKf7c93s76npkok0l8xgp8bde43" tableName="connection">
             <column name="customer_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="gmaina" id="1541921637131-10">
+        <createIndex indexName="FKg3o9i31895701g5oig74voxxn" tableName="reading">
+            <column name="connection_id"/>
         </createIndex>
     </changeSet>
 </databaseChangeLog>
