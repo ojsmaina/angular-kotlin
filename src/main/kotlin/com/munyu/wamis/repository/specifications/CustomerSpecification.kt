@@ -6,7 +6,7 @@ import javax.persistence.criteria.Predicate
 
 object CustomerSpecification {
     fun findCustomersBySpecification(searchTerm: String?): Specification<Customer> {
-        return Specification { root, query, cb ->
+        return Specification { root, _, cb ->
             val predicates = mutableListOf<Predicate>()
 
             if (searchTerm != null) {

@@ -30,7 +30,7 @@ data class Reading(
            this.units = currentReading - previousReading;
         }
 
-        constructor(date_of_reading: Date, previousReading: Int, currentReading: Int,units: Int,connection: Connection): this(date_of_reading,previousReading,currentReading){
+        constructor(date_of_reading: Date, previousReading: Int, currentReading: Int, connection: Connection): this(date_of_reading,previousReading,currentReading){
                 this.connection = connection
         }
 }

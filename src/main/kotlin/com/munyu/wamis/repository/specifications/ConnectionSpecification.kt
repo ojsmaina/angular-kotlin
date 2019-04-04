@@ -8,7 +8,7 @@ import javax.persistence.criteria.Predicate
 
 object ConnectionSpecification {
     fun findConnectionsBySpecification(searchTerm: String?): Specification<Connection> {
-        return Specification { root, query, cb ->
+        return Specification { root, _, cb ->
             val predicates = mutableListOf<Predicate>()
 
             if (searchTerm != null) {
