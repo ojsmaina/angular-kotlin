@@ -85,3 +85,7 @@ package-lock.json
 /node_modules
 /dist
 /e2e/node_modules
+
+#Compiled JS
+*.map
+*.js
