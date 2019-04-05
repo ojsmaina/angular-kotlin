@@ -1,8 +1,6 @@
 package com.munyu.wamis.repository.specifications
 
 import com.munyu.wamis.domain.Connection
-import com.munyu.wamis.domain.Customer
-import org.springframework.data.domain.Example
 import org.springframework.data.jpa.domain.Specification
 import javax.persistence.criteria.Predicate
 
